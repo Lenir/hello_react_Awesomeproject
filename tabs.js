@@ -11,7 +11,7 @@ class TabButton extends Component {
   render() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <View style={{height: 30, width: 30, backgroundColor: 'gray'}}></View>
+        <Ionicons size={35} name={this.props.iconName} color="#909090" />
         <Text style={{marginTop: 5, color: '#A0A0A0'}}>{this.props.name}</Text>
       </View>
     )
@@ -22,11 +22,11 @@ export default class tabs extends Component {
   render() {
     return(
       <View style={styles.tabs}>
-        <TabButton name="Home" iconName="ios-home-outline"/>
-        <TabButton name="Google Plus"/>
-        <TabButton name="Github"/>
-        <TabButton name="Dropbox"/>
-        <TabButton name="Settings"/>
+        <TabButton name="Home" iconName="md-home"/>
+        <TabButton name="Google Plus"  iconName="logo-googleplus"/>
+        <TabButton name="Github" iconName="logo-github"/>
+        <TabButton name="Dropbox" iconName="logo-dropbox"/>
+        <TabButton name="Settings" iconName="md-settings"/>
       </View>
     )
 

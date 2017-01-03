@@ -9,29 +9,50 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  TouchableHighlight,
+  Alert,
+  Keyboard,
+  TextInput,
+  Navigator
 } from 'react-native';
+import User from './user.js';
+import NavBar from './navBar.js';
+import Tabs from './tabs.js';
+import ButtonGroup from './buttonGroup.js';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class AwesomeProject extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Navbar />
-        <Body />
+        <View style={{
+          flex:1,
+          flexDirection: 'column',
+        }}>
+
+        <TouchableHighlight style={styles.wrapper}
+          onPress={() => Alert.alert(
+            'Alert Title',
+            'Alert message',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          )}>
+          <View style={styles.button}>
+            <Text>Alert with message and default button</Text>
+          </View>
+        </TouchableHighlight>
+          <NavBar />
+          <User />
+          <ButtonGroup />
+          <Body />
+
+          <Tabs />
+        </View>
       </View>
     );
-  }
-}
-//
-class Navbar extends Component {
-  render() {
-    return (
-      <View style={styles.navbar}>
-        <Text>
-          NavBar
-        </Text>
-      </View>
-    )
   }
 }
 
@@ -43,41 +64,29 @@ class Body extends Component {
           Body
         </Text>
       </View>
-    )
+    );
   }
 }
-//
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
-  /*
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  wrapper: {
+    backgroundColor: 'white'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  */
-  navbar: {
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center' ,
-    backgroundColor: 'gray',
+  button: {
+    padding: 5,
+    backgroundColor: 'white'
   },
   body: {
-    flex: 1,
+    flex:10,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

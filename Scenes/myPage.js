@@ -26,7 +26,7 @@ export default class MyPage extends Component {
 
   }
   render() {
-    var userImage = require('./img/avatar.png');
+    var userImage = require('../img/avatar.png');
     return (
       <View style={{
         backgroundColor: '#dfdfdf',

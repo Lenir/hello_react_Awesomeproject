@@ -15,14 +15,14 @@ import {
 import {Scene, Router,Actions } from 'react-native-router-flux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Splash from './splash.android'
-import UserMain from './userMain'
-import User from './user';
-import MyPage from './myPage'
-import NavBar from './navBar';
-import Body from './body'
-import Tabs from './tabs';
-import ButtonGroup from './buttonGroup';
+import Splash from './Scenes/splash.android'
+import UserMain from './Scenes/userMain'
+import User from './Scenes/user';
+import MyPage from './Scenes/myPage'
+import NavBar from './Scenes/navBar';
+import Body from './Scenes/body'
+import Tabs from './Scenes/tabs';
+import ButtonGroup from './Scenes/buttonGroup';
 
 export default class AwesomeProject extends Component {
   render() {

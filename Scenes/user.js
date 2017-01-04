@@ -15,7 +15,7 @@ import {Scene, Router,Actions} from 'react-native-router-flux';
 
 export default class User extends Component {
   render() {
-    var userImage = require('./img/avatar.png');
+    var userImage = require('../img/avatar.png');
     return (
       <View style={styles.user}>
         <View style={{height:120, flexDirection:'row',

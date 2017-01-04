@@ -9,22 +9,98 @@ import {
   Alert,
   Keyboard,
   TextInput,
-  CameraRoll,
+  PixelRatio,
+  Platform
 } from 'react-native';
 
+import ImagePicker from 'react-native-image-picker';
 import {Scene, Router,Actions } from 'react-native-router-flux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
+
+
 export default class MyPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       name: 'Input Name',
       company: 'Input Company name',
       id: 'Input ID',
-      team: 'Input team name'};
+      team: 'Input team name',
+      avatarSource:  require('../img/avatar.png'),
+      videoSource: null
+    };
+    selectPhotoTapped() {
 
+      const options = {
+        quality: 1.0,
+        maxWidth: 500,
+        maxHeight: 500,
+        storageOptions: {
+          skipBackup: true
+        }
+      };
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response = ', response);
+
+        if (response.didCancel) {
+          console.log('User cancelled photo picker');
+        }
+        else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        }
+        else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        }
+        else {
+          var source;
+
+          // You can display the image using either:
+          source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
+
+          //Or:
+          if (Platform.OS === 'android') {
+            source = {uri: response.uri, isStatic: true};
+          } else {
+            source = {uri: response.uri.replace('file://', ''), isStatic: true};
+          }
+
+          this.setState({
+            avatarSource: source
+            });
+          }
+        });
+    }
+    //
+    selectVideoTapped() {
+    const options = {
+      title: 'Video Picker',
+      takePhotoButtonTitle: 'Take Video...',
+      mediaType: 'video',
+      videoQuality: 'medium'
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled video picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        this.setState({
+          videoSource: response.uri
+        });
+      }
+    });
   }
+
+
+
   render() {
     var userImage = require('../img/avatar.png');
     return (
@@ -42,15 +118,10 @@ export default class MyPage extends Component {
           }}>
             <View style={{margin:10}}>
               <Text>Photo</Text>
-              <Image source={userImage} style={{width:120,height:120}}/>
-              <TouchableOpacity
-                onPress={() => Alert.alert(
-                  'Alert Title',
-                  'Alert message',
-                  [
-                    {text: 'OK', onPress: () => console.log('OK Pressed!')},
-                  ]
-              )}>
+              <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+              { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+                <Image style={styles.avatar} source={this.state.avatarSource} />
+              }
 
                 <View style={{width:120, height:15, backgroundColor: 'gray',alignItems:'center'}}>
                   <Text style={{fontSize:10, color:'white'}}>Edit Photo</Text>
@@ -86,3 +157,23 @@ export default class MyPage extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  avatarContainer: {
+    borderColor: '#9B9B9B',
+    borderWidth: 1 / PixelRatio.get(),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatar: {
+    borderRadius: 75,
+    width: 130,
+    height: 130
+  }
+});

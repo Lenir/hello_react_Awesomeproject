@@ -14,7 +14,7 @@ this is my first time in react native.
 ## Note
 보통 에러 해결법 찾아서 기록해둔 것들입니다.
 
-In window 7, run react native in android avd, I encountered Error:404(file not found), Error:500(internal error).(I think cause is watchman for window).
++ In window 7, run react native in android avd, I encountered Error:404(file not found), Error:500(internal error).(I think cause is watchman for window).
 
 윈도우7 환경에서 안드로이드 avd로 run-android 실행시 404에러나 500에러가 뜹니다. 왜인지는 잘 모르겠는데 아마 watchman때문인 거 같아서 run-android 할 때 마다 watchman리스트와 npm 캐시를 지워줬더니 되더군요. 정확한 이유는 모르겠습니다. 아마 윈도우용 watchman이 알파 버전이라서 그런거 같아요.
 
@@ -25,7 +25,7 @@ I solve it like this.
 $ watchman watch-del-all
 $ npm cache clean
 ```
-And I encountered error 'Error: undefined is not an object (Evaluating 'react.React.createElement')'
++ And I encountered error 'Error: undefined is not an object (Evaluating 'react.React.createElement')'
 and cause was import statement.
 
 그리고 또 'Error: undefined is not an object (Evaluating 'react.React.createElement')'이런 에러가 나왔는데.. 예상치도 못한 에러라서 적어둡니다.
@@ -41,3 +41,5 @@ and change like this.
 ```js
 import React, { Component } from 'react';
 ```
+
++ And another issue with react-native-image-picker, 'Error: undefined is not an object (evaluating ImagePickerManager..' it's cause not link with native project.(I told before, i delete watchman and npm cache every time.)

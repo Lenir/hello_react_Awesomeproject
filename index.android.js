@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,83 +10,36 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
-  Alert,
-  Keyboard,
-  TextInput,
-  Navigator
 } from 'react-native';
-import User from './user.js';
-import NavBar from './navBar.js';
-import Tabs from './tabs.js';
-import ButtonGroup from './buttonGroup.js';
+
+import {Scene, Router,Actions } from 'react-native-router-flux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import Splash from './splash.android'
+import UserMain from './userMain'
+import User from './user';
+import MyPage from './myPage'
+import NavBar from './navBar';
+import Body from './body'
+import Tabs from './tabs';
+import ButtonGroup from './buttonGroup';
 
 export default class AwesomeProject extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{
-          flex:1,
-          flexDirection: 'column',
-        }}>
-
-        <TouchableHighlight style={styles.wrapper}
-          onPress={() => Alert.alert(
-            'Alert Title',
-            'Alert message',
-            [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
-            ]
-          )}>
-          <View style={styles.button}>
-            <Text>Alert with message and default button</Text>
-          </View>
-        </TouchableHighlight>
-          <NavBar />
-          <User />
-          <ButtonGroup />
-          <Body />
-
-          <Tabs />
-        </View>
-      </View>
+      <Router>
+        <Scene key="root"  hideNavBar hideTabBar>
+          <Scene key="user" component={User} />
+          <Scene key="userMain" component={UserMain} />
+          <Scene key="myPage" component={MyPage} />
+          <Scene key="splash" component={Splash} initial={true} />
+          <Scene key="tabs" component={Tabs} />
+          <Scene key="buttonGroup" component={ButtonGroup} />
+          <Scene key="navBar" component={NavBar} />
+        </Scene>
+      </Router>
     );
   }
 }
-
-class Body extends Component {
-  render() {
-    return (
-      <View style={styles.body}>
-        <Text>
-          Body
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    flexDirection: 'row',
-  },
-  wrapper: {
-    backgroundColor: 'white'
-  },
-  button: {
-    padding: 5,
-    backgroundColor: 'white'
-  },
-  body: {
-    flex:10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);

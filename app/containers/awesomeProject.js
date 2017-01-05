@@ -12,7 +12,7 @@ import {
 import {Scene, Router,Actions } from 'react-native-router-flux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default class Splash extends Component {
+export default class AwesomeProject extends Component {
   render() {
     return(
       <View style={{
@@ -25,9 +25,10 @@ export default class Splash extends Component {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          flexDirection: 'column'
+          flexDirection: 'column',
         }}>
-          <TouchableOpacity onPress={Actions.userMain}>
+
+          <TouchableOpacity onPress={Actions.login}>
             <Ionicons size={150} name="logo-android" color="#909090"/>
           </TouchableOpacity>
           <Text> Welcome, android user </Text>

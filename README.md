@@ -5,11 +5,15 @@ this is my first time in react native.
 
 ## Used/referenced
 사용한 툴이나 도움이 많이 된 사이트를 모았습니다.
+
+
 + rnpm (react package manager), https://github.com/rnpm/rnpm
 + React native, https://facebook.github.io/react-native/
 + React tutorial korean, https://www.gitbook.com/book/g6ling/react-native-tutorial-korean
 + React native router flux, https://github.com/aksonov/react-native-router-flux
++ React native Image Picker, https://github.com/marcshilling/react-native-image-picker
 + Ionic Ionicon, http://ionicframework.com/docs/v2/ionicons/
+
 
 ## Note
 보통 에러 해결법 찾아서 기록해둔 것들입니다.
@@ -43,3 +47,14 @@ import React, { Component } from 'react';
 ```
 
 + And another issue with react-native-image-picker, 'Error: undefined is not an object (evaluating ImagePickerManager..' it's cause not link with native project.(I told before, i delete watchman and npm cache every time.)
+so, delete watchman list, and link, and clean cache, and launch.
+
+React native Image Picker사용시 에러가 뜨던데 이건 watchman 캐시를 지워버려서 npm link가 되지 않아 생기는 것 같더군요. 링크해주니까 잘 됩니다. 빨리 맥환경으로 돌아가야할텐데..
+
+```bash
+$ watchman watch-del-all
+$ rnpm link
+$ react-native link
+$ npm cache clean
+$ react-native start
+```
